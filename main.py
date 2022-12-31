@@ -255,7 +255,7 @@ def show_post(post_id, ):
 
 
         except:
-            flash("Please log in before sending comment")
+            flash("Please log in before sending comment!!")
             return redirect(url_for("login", ))
 
 
