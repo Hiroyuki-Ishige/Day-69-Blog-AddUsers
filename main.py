@@ -16,15 +16,23 @@ from wtforms.validators import DataRequired, URL
 from flask_migrate import Migrate
 from functools import wraps
 import hashlib
+import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+#This SECRET_KEY is used at local development
+# app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+
+#This SECRET_KEY is used at HEROKU deployment
+app.config['SECRET_KEY'] = 'SECRET_KEY'
 app.config["WTF_CSRF_ENABLED"] = True
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
-# Create SQLite database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
+# Create SQLite database (this is used at local only)
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
+
+#Set database after HEROKU deployment
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 db.init_app(app)
