@@ -20,10 +20,10 @@ import os
 
 app = Flask(__name__)
 #This SECRET_KEY is used at local development
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+# app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 
 #This SECRET_KEY is used at HEROKU deployment
-# app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
 app.config["WTF_CSRF_ENABLED"] = True
 ckeditor = CKEditor(app)
 Bootstrap(app)
