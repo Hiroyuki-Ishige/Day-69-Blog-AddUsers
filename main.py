@@ -29,10 +29,13 @@ ckeditor = CKEditor(app)
 Bootstrap(app)
 
 # Create SQLite database (this is used at local only)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
 
 #Set database after HEROKU deployment
+##This line is error(don't know rasoen)
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL", "sqlite:///blog.db")
+
+##This code is ok (but showing password: "zahxfbx...."). revised "postgres...." to "postgresql....."
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://zahxfbxoaztmvs:ff36dcf61ca45eee12247ee2a4093bdc4cf3990aaeaced3f2e5610c36e93e7ca@ec2-34-197-84-74.compute-1.amazonaws.com:5432/d6p4ujefhed2pe"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
